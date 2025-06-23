@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -7,14 +12,12 @@ private static ArrayList<Expense> Expensives = new ArrayList<>();
 private static ArrayList<String> Categories = new ArrayList<>();
 
 	public static void main(String[] args) {
-		Categories.add("Test");
-		Categories.add("Test2");
-		Expensives.add(new Expense("Test",5000));
-		Expensives.add(new Expense("Test2",3000));
+		load();
 		Menu();
 	}
 	
-	private static void Menu() {		
+	private static void Menu() {
+		safe();
 		System.out.println("[1] new Expense");
 		System.out.println("[2] see all Expenses");
 		System.out.println("[3] delete Expense");
@@ -112,5 +115,55 @@ private static ArrayList<String> Categories = new ArrayList<>();
     		}    			
     		
     	}
+    }
+
+    private static void safe() {
+		File Data = new File("src/Memory.txt");
+		FileWriter writer = null;
+    	try {
+			writer = new FileWriter(Data);
+		} catch (IOException e) {
+			System.out.println("Writer Error");
+		}
+    	
+    	for(Expense e : Expensives) {
+    		try {
+				writer.write(e.category() + " " + e.amount() +"\n");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+    	}
+    	try {
+			writer.flush();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    }
+    
+    private static void load() {
+		File Data = new File("src/Memory.txt");
+		Scanner FileScanner = null;
+		try {
+			FileScanner = new Scanner(Data).useLocale(Locale.US);
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		}
+		while(FileScanner.hasNext()) {
+			String category = FileScanner.next();
+			double amount = FileScanner.nextDouble();
+			Expensives.add(new Expense(category,amount));
+			boolean CategoryFound = false;
+			for(String Cate : Categories) {
+				if(category == Cate) {
+					CategoryFound = true;
+				}
+			}
+			if(!CategoryFound) {
+				Categories.add(category);
+			}
+		}
+        if (FileScanner != null) {
+            FileScanner.close();
+        }
     }
 }
