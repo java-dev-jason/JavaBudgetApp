@@ -31,13 +31,11 @@ This project uses Java **records**, **ArrayLists**, and **basic CLI interaction*
 ---
 
 ## 🙋‍♂️ About
-### 📁 Projektstruktur (empfohlen)
-```bash
-JavaBudgetApp/
-├── src/
-│   ├── Main.java
-│   └── Expense.java
-├── README.md´´´
+
+Built by Jason Belzek as part of a learning project to explore Java records and basic data structures.  
+Feel free to fork, explore, and suggest improvements!
+
+---
 
 ## 🚀 Getting Started
 
