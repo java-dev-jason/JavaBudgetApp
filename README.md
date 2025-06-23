@@ -23,23 +23,21 @@ This project uses Java **records**, **ArrayLists**, and **basic CLI interaction*
 
 ---
 
-##🧠 Example Output
+## 🧠 Example Output
 [1] new Expense
 [2] see all Expenses
 [3] delete Expense
 
 ---
 
-##🙋‍♂️ About
+## 🙋‍♂️ About
 ### 📁 Projektstruktur (empfohlen)
 ```bash
 JavaBudgetApp/
 ├── src/
 │   ├── Main.java
 │   └── Expense.java
-├── README.md
-
----
+├── README.md´´´
 
 ## 🚀 Getting Started
 
